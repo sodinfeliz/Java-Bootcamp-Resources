@@ -9,24 +9,34 @@ public class RockPaperScissors {
         System.out.println("When I say 'shoot', Choose: rock, paper, or scissors.\n");
         System.out.println("Are you ready? Write 'yes' if you are.");
 
-    //Task 1: See if the user wants to play. 
+        //Task 1: See if the user wants to play. 
+        String response = scan.nextLine();
+        if (response.equals("yes")) {
+            System.out.println("Great!");
+            System.out.println("rock – paper – scissors, shoot!");
 
-    /*Task 2: Set up the game
-    
+            String yourChoice = scan.nextLine();
+            String computerChoice = computerChoice();
+            String result = result(yourChoice, computerChoice);
+            printResult(yourChoice, computerChoice, result);
+        } else {
+            System.out.println("Darn, some other time...!");
+        }
 
-       • if the answer is yes: 
-             – print: Great!
-             – print: rock – paper – scissors, shoot!
-             – pick up user's choice.
-             – get the computer choice (can only be done after task 3).
-             – get the result (can only be done after task 4)
-             – print everything (can only be done after task 5).
+        /*Task 2: Set up the game
+        
+        • if the answer is yes: 
+                – print: Great!
+                – print: rock – paper – scissors, shoot!
+                – pick up user's choice.
+                – get the computer choice (can only be done after task 3).
+                – get the result (can only be done after task 4)
+                – print everything (can only be done after task 5).
 
-       • else:
-             – print: Darn, some other time...!        
-    */
-              
-
+        • else:
+                – print: Darn, some other time...!        
+        */
+        
         scan.close();
     }
 
@@ -43,8 +53,15 @@ public class RockPaperScissors {
      *      if 1: returns the choice 'paper'
      *      if 2: returns the choice 'scissors'
      */
-
-
+    public static String computerChoice() {
+        String choice = "";
+        switch ((int)Math.random()*3) {
+            case 0: choice = "rock"; break;
+            case 1: choice = "paper"; break;
+            case 2: choice = "scissors"; break;
+        }
+        return choice;
+    }
 
 
     //Task 4  – Write a function that compares the choices and returns the result.
@@ -77,8 +94,20 @@ public class RockPaperScissors {
     public static String result(String yourChoice, String computerChoice) {
         String result = "";
 
+        if ((yourChoice.equals("rock") && computerChoice.equals("scissors")) ||
+            (yourChoice.equals("paper") && computerChoice.equals("rock")) ||
+            (yourChoice.equals("scissors") && computerChoice.equals("paper"))) {
+            result = "You win";
+        } else if ((computerChoice.equals("rock") && yourChoice.equals("scissors")) ||
+                   (computerChoice.equals("paper") && yourChoice.equals("rock")) ||
+                   (computerChoice.equals("scissors") && yourChoice.equals("paper"))) {
+            result = "You lose";
+        } else {
+            result = "It's a tie";
+        }
+
         return result;
-      }
+    }
  
      //Task 5  – Write a function that prints your choice, the computer's, and the result.
 
@@ -95,5 +124,10 @@ public class RockPaperScissors {
      *      – prints: The computer chose: <computer choice>
      *      – prints: <result>
      */
+    public static void printResult(String yourChoice, String computerChoice, String result) {
+        System.out.println("You chose:          " + yourChoice);
+        System.out.println("The computer chose: " + computerChoice);
+        System.out.println(result);
+    }
 
 }
