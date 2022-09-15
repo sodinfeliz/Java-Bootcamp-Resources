@@ -6,6 +6,13 @@ public class WeatherNetwork {
         String forecast = "";
 
         //IF - ELSE IF - ELSE STATEMENTS HERE!
+        if (-15 <= temp && temp <= -1) {
+            forecast = "The forecast is FREEZING! Stay home!";
+        } else if (0 <= temp && temp <= 10) {
+            forecast = "The forecast is Chilly. Wear a coat!";
+        } else {
+            forecast = "It's warm. go outside!";
+        }
 
         //if temp between -15 and -1: "The forecast is FREEZING! Stay home!"
 
