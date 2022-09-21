@@ -19,8 +19,10 @@ public class Machine {
     }
 
     public boolean dispense(int row, int spot) {
-        if (this.items[row][spot].getQuantity() > 0) {
-            items[row][spot].setQuantity(items[row][spot].getQuantity() - 1);
+        Item item = this.getItem(row, spot);
+        if (item.getQuantity() > 0) {
+            item.setQuantity(item.getQuantity() - 1);
+            this.setItem(item, row, spot);
             return true;
         } 
         return false;
